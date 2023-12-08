@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-12-05T11:24:55.161377Z</date>
+  <millis>1701775495161</millis>
+  <nanos>377000</nanos>
+  <sequence>0</sequence>
+  <logger>java.util.logging.Logger</logger>
+  <level>INFO</level>
+  <class>org.example.Main</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>uzytkownik uruchamia aplikacje</message>
+</record>
+<record>
+  <date>2023-12-05T11:25:04.442687Z</date>
+  <millis>1701775504442</millis>
+  <nanos>687000</nanos>
+  <sequence>1</sequence>
+  <logger>java.util.logging.Logger</logger>
+  <level>INFO</level>
+  <class>org.example.LoginPage</class>
+  <method>actionPerformed</method>
+  <thread>27</thread>
+  <message>uzytkownik podejmuje probe logowania</message>
+</record>
+<record>
+  <date>2023-12-05T11:25:04.443649Z</date>
+  <millis>1701775504443</millis>
+  <nanos>649000</nanos>
+  <sequence>2</sequence>
+  <logger>java.util.logging.Logger</logger>
+  <level>INFO</level>
+  <class>org.example.LoginPage</class>
+  <method>actionPerformed</method>
+  <thread>27</thread>
+  <message>haslo prawidlowe</message>
+</record>
+</log>
