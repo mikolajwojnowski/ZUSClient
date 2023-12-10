@@ -20,11 +20,15 @@ public class RegistrationPanel extends JFrame {
     private JTextField emailField = new JTextField();
     private JButton submitButton = new JButton("Submit");
     private JButton returnButton = new JButton("Return");
+    JLabel warning = new JLabel("");
 
     public RegistrationPanel() {
         setTitle("Enhanced Registration Panel");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        warning.setVisible(false);
+        warning.setForeground(Color.RED);
+        warning.setBounds(170,350,270,40);
         // Add padding to the panel
         panel.setBorder(new EmptyBorder(20, 20, 20, 20));
 
@@ -47,11 +51,13 @@ public class RegistrationPanel extends JFrame {
         // Add the buttonsPanel to the main panel
         panel.add(buttonsPanel);
 
+        panel.add(warning);
+
         returnButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                LoginPage loginPage = new LoginPage(iDandPassword.getLoginInfo());
+                LoginPage loginPage = new LoginPage();
 
                 // Implement the logic to return to the previous window
             }
@@ -60,6 +66,22 @@ public class RegistrationPanel extends JFrame {
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                boolean peselB = true;
+                boolean pesel1B = true;
+                boolean hasloB = true;
+                boolean imieB = true;
+                boolean nazwiskoB = true;
+                boolean emailB = true;
+                boolean insert = true;
+
+                warning.setVisible(false);
+
+
+                String malpa = "@";
+
+                String select =new String();
+                String odpowiedz = new String();
                 String name = nameField.getText();
                 String surname = surnameField.getText();
                 String password = new String(passwordField.getPassword());
@@ -68,11 +90,76 @@ public class RegistrationPanel extends JFrame {
                 String sex = (String) sexComboBox.getSelectedItem();
                 String email = emailField.getText();
 
-                // Placeholder for registration logic
-                String message = "Name: " + name + "\nSurname: " + surname + "\nPassword: " + password +
-                        "\nPESEL: " + pesel + "\nAge: " + age + "\nSex: " + sex + "\nEmail: " + email;
+                select = "Select * from podatnik where pesel like '" + pesel +"'";
 
-                JOptionPane.showMessageDialog(RegistrationPanel.this, message, "Registration Successful", JOptionPane.INFORMATION_MESSAGE);
+                Client klient1 = new Client();
+                odpowiedz = klient1.zapytanie(select);
+
+//                if(!odpowiedz.isEmpty())
+//                {
+//                    Main.logr.info("uzytkownik podczas rejestracji podaje istniejący juz w systemie numer pesel");
+//                    warning.setText("Taki uzytkownik juz istnieje !");
+//                    warning.setVisible(true);
+//                    pesel1B = false;
+//
+//                }
+//                else
+//                {
+//                    insert = true;
+//                }
+                if(name.isEmpty())
+                {
+                    Main.logr.info("uzytkownik podczas rejestracji nie podal imienia");
+                    warning.setText("Proszę podac imię !");
+                    warning.setVisible(true);
+                    imieB = false;
+                }
+                if(surname.isEmpty())
+                {
+                    Main.logr.info("uzytkownik podczas rejestracji nie podal nazwiska");
+                    warning.setText("Prosze podać nazwisko !");
+                    warning.setVisible(true);
+                    nazwiskoB = false;
+                }
+                if(pesel.length()>11||pesel.length()<11)
+                {
+
+                        Main.logr.info("uzytkownik podczas rejestracji podaje błędny numer pesel");
+                        warning.setText("Błędny numer pesel !");
+                        warning.setVisible(true);
+                        peselB = false;
+
+                }
+                if(password.length()<10)
+                {
+                    Main.logr.info("uzytkownik podczas rejestracji podaje haslo nie pasujące do standardów aplikacji");
+                    warning.setText("Haslo powinno zawierac co najmniej 10 znakow !");
+                    warning.setVisible(true);
+                    hasloB = false;
+                }
+                if(email.contains(malpa) == false)
+                {
+                    Main.logr.info("uzytkownik podczas rejestracji podaje błędny adres email");
+                    warning.setText("Błędny adres email !");
+                    warning.setVisible(true);
+                    emailB = false;
+                }
+                if(imieB == true && nazwiskoB  == true && emailB == true && hasloB == true && pesel1B == true && peselB == true)
+                {
+                    Main.logr.info("uzytkownik podejmuje próbę rejestracji");
+                    System.out.println(email);
+                    Main.logr.info("uzytkownik przeszedł pierwszy etap rejestracji");
+                    Client klientx = new Client();
+                    String zapytanie = new String("G");zapytanie = zapytanie + email;
+                   klientx.zapytanie(zapytanie);
+
+                   // int kod = Integer.parseInt(klientx.zapytanie(zapytanie));
+                    dispose();
+
+                    RegisterSucces emailo = new RegisterSucces(pesel,password,name,surname,email);
+                }
+
+
             }
         });
 
@@ -94,9 +181,6 @@ public class RegistrationPanel extends JFrame {
         return fieldPanel;
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            new RegistrationPanel();
-        });
-    }
+
+
 }

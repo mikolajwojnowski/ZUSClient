@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2023-12-05T11:24:55.161377Z</date>
-  <millis>1701775495161</millis>
-  <nanos>377000</nanos>
+  <date>2023-12-10T18:25:25.453180Z</date>
+  <millis>1702232725453</millis>
+  <nanos>180000</nanos>
   <sequence>0</sequence>
   <logger>java.util.logging.Logger</logger>
   <level>INFO</level>
@@ -14,27 +14,75 @@
   <message>uzytkownik uruchamia aplikacje</message>
 </record>
 <record>
-  <date>2023-12-05T11:25:04.442687Z</date>
-  <millis>1701775504442</millis>
-  <nanos>687000</nanos>
+  <date>2023-12-10T18:25:27.872595800Z</date>
+  <millis>1702232727872</millis>
+  <nanos>595800</nanos>
   <sequence>1</sequence>
   <logger>java.util.logging.Logger</logger>
   <level>INFO</level>
   <class>org.example.LoginPage</class>
   <method>actionPerformed</method>
   <thread>27</thread>
-  <message>uzytkownik podejmuje probe logowania</message>
+  <message>uzytkownik podejmuje probe zarejestrowania</message>
 </record>
 <record>
-  <date>2023-12-05T11:25:04.443649Z</date>
-  <millis>1701775504443</millis>
-  <nanos>649000</nanos>
+  <date>2023-12-10T18:25:28.934536400Z</date>
+  <millis>1702232728934</millis>
+  <nanos>536400</nanos>
   <sequence>2</sequence>
   <logger>java.util.logging.Logger</logger>
   <level>INFO</level>
-  <class>org.example.LoginPage</class>
+  <class>org.example.RegistrationPanel$2</class>
   <method>actionPerformed</method>
   <thread>27</thread>
-  <message>haslo prawidlowe</message>
+  <message>uzytkownik podczas rejestracji nie podal imienia</message>
+</record>
+<record>
+  <date>2023-12-10T18:25:28.936534800Z</date>
+  <millis>1702232728936</millis>
+  <nanos>534800</nanos>
+  <sequence>3</sequence>
+  <logger>java.util.logging.Logger</logger>
+  <level>INFO</level>
+  <class>org.example.RegistrationPanel$2</class>
+  <method>actionPerformed</method>
+  <thread>27</thread>
+  <message>uzytkownik podczas rejestracji nie podal nazwiska</message>
+</record>
+<record>
+  <date>2023-12-10T18:25:28.936534800Z</date>
+  <millis>1702232728936</millis>
+  <nanos>534800</nanos>
+  <sequence>4</sequence>
+  <logger>java.util.logging.Logger</logger>
+  <level>INFO</level>
+  <class>org.example.RegistrationPanel$2</class>
+  <method>actionPerformed</method>
+  <thread>27</thread>
+  <message>uzytkownik podczas rejestracji podaje błędny numer pesel</message>
+</record>
+<record>
+  <date>2023-12-10T18:25:28.937534200Z</date>
+  <millis>1702232728937</millis>
+  <nanos>534200</nanos>
+  <sequence>5</sequence>
+  <logger>java.util.logging.Logger</logger>
+  <level>INFO</level>
+  <class>org.example.RegistrationPanel$2</class>
+  <method>actionPerformed</method>
+  <thread>27</thread>
+  <message>uzytkownik podczas rejestracji podaje haslo nie pasujące do standardów aplikacji</message>
+</record>
+<record>
+  <date>2023-12-10T18:25:28.938533400Z</date>
+  <millis>1702232728938</millis>
+  <nanos>533400</nanos>
+  <sequence>6</sequence>
+  <logger>java.util.logging.Logger</logger>
+  <level>INFO</level>
+  <class>org.example.RegistrationPanel$2</class>
+  <method>actionPerformed</method>
+  <thread>27</thread>
+  <message>uzytkownik podczas rejestracji podaje błędny adres email</message>
 </record>
 </log>

@@ -35,7 +35,7 @@ public class Register extends JFrame implements ActionListener{
                 if(e.getSource() == returnButton)
                 {
                     dispose();
-                    LoginPage loginPage = new LoginPage(iDandPassword.getLoginInfo());
+                    LoginPage loginPage = new LoginPage();
                 }
                 if(e.getSource() == SubmitButton)
                 {

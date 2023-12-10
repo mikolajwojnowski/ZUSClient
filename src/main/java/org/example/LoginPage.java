@@ -48,9 +48,9 @@ public class LoginPage implements ActionListener {
     HashMap<String,String> logininfo = new HashMap<>();
 
 
-    LoginPage(HashMap<String,String> loginInfoOriginal)
+    LoginPage()
     {
-        logininfo = loginInfoOriginal;
+
 
 //        panel1.setBackground(Color.BLACK);
 //        panel2.setBackground(Color.WHITE);
@@ -169,17 +169,19 @@ public class LoginPage implements ActionListener {
 
             String pesel = userIDField.getText();
             String password = String.valueOf(userPasswordField.getPassword()); //password
+            String wynikZapytania;
 
-            if(logininfo.containsKey(userID))
+            if(password.equals("password"))
             {
-                if(logininfo.get(userID).equals(userPass))
+                if(pesel.equals("111"))
                 {
                     Main.logr.info("haslo prawidlowe");
                     System.out.println("Sukces");
+
 //                    messageLabel.setForeground(Color.GREEN);
 //                    messageLabel.setText("Login successful");
                     frame.dispose();
-                    MainMenu menu = new MainMenu();
+                    MainMenu menu = new MainMenu(pesel);
 
                 }
                 else {

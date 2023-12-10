@@ -4,10 +4,21 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 
 public class MainMenu extends JFrame implements ActionListener {
 
+    String rokUrodzenia;
+    String miesiacUrodzenia;
+    String dzienUrodzenia;
+    String plec;
+    String wiek;
+    String pesel;
+
+    String pensja;
+    String imie;
+    String nazwisko;
     JFrame frame = new JFrame();
     //JLayeredPane layeredPane = new JLayeredPane();
 
@@ -42,7 +53,7 @@ public class MainMenu extends JFrame implements ActionListener {
     JPanel northPanel = new JPanel();
 
     Font buttonFont = new Font("Arial", Font.BOLD, 14);
-    public MainMenu() {
+    public MainMenu(String pesel) {
 
 
         button1.setSize(new Dimension(100,100));
@@ -107,9 +118,12 @@ public class MainMenu extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         // Handle button actions if needed
+        //button 1 = opłać składke
         if(e.getSource() == button1)
         {
-            JOptionPane.showMessageDialog(MainMenu.this, "SEX", "SEX", JOptionPane.INFORMATION_MESSAGE);
+            Main.logr.info("uzytkownik dokonuje próby uruchomienia modułu odpowiedzialnego za opłacanie składek");
+            this.dispose();
+            //Oplata oplata = new Oplata(pesel, this.pensja);
         }
         if(e.getSource() == profileButton)
         {
@@ -122,6 +136,17 @@ public class MainMenu extends JFrame implements ActionListener {
             // You can close this window or navigate to the login screen
             frame.dispose();
 
+        }
+        //button 3 = pobierz podanie
+        if(e.getSource() == button3)
+        {
+            Main.logr.info("uzytkownik dokonuje próby uruchomienia modułu odpowiedzialnego za pobieranie podań");
+            frame.dispose();
+            try {
+                Podanie podanie = new Podanie(pesel);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         }
 
 
