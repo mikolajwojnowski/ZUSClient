@@ -95,18 +95,18 @@ public class RegistrationPanel extends JFrame {
                 Client klient1 = new Client();
                 odpowiedz = klient1.zapytanie(select);
 
-//                if(!odpowiedz.isEmpty())
-//                {
-//                    Main.logr.info("uzytkownik podczas rejestracji podaje istniejący juz w systemie numer pesel");
-//                    warning.setText("Taki uzytkownik juz istnieje !");
-//                    warning.setVisible(true);
-//                    pesel1B = false;
-//
-//                }
-//                else
-//                {
-//                    insert = true;
-//                }
+                if(!odpowiedz.isEmpty())
+                {
+                    Main.logr.info("uzytkownik podczas rejestracji podaje istniejący juz w systemie numer pesel");
+                    warning.setText("Taki uzytkownik juz istnieje !");
+                    warning.setVisible(true);
+                    pesel1B = false;
+
+                }
+                else
+                {
+                    insert = true;
+                }
                 if(name.isEmpty())
                 {
                     Main.logr.info("uzytkownik podczas rejestracji nie podal imienia");
@@ -150,13 +150,18 @@ public class RegistrationPanel extends JFrame {
                     System.out.println(email);
                     Main.logr.info("uzytkownik przeszedł pierwszy etap rejestracji");
                     Client klientx = new Client();
-                    String zapytanie = new String("G");zapytanie = zapytanie + email;
-                   klientx.zapytanie(zapytanie);
+                    String zapytanie = new String("G");
+                    zapytanie = zapytanie + email;
+                    klientx.zapytanie(zapytanie);
 
-                   // int kod = Integer.parseInt(klientx.zapytanie(zapytanie));
+                    //tu error nie mozna parse  bo zapytanie jest niby null chuj wie czemu
+
+                    //int kod = Integer.parseInt(klientx.zapytanie(zapytanie));
+                    int kod = 5;
+
                     dispose();
 
-                    RegisterSucces emailo = new RegisterSucces(pesel,password,name,surname,email);
+                    RegisterSucces emailo = new RegisterSucces(pesel,password,name,surname,email,kod);
                 }
 
 

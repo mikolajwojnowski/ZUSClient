@@ -41,7 +41,7 @@ public class RegisterSucces extends JFrame implements ActionListener
      * @param nazwisko pole opisuje nazwisko podatnika
      * @param email    pole opisuje email podatnika
      */
-    public RegisterSucces(String pesel, String haslo, String imie, String nazwisko, String email)
+    public RegisterSucces(String pesel, String haslo, String imie, String nazwisko, String email,int kod)
     {
         Main.logr.info("do uzytkownika wyslano emial potwierdzajacy");
         this.kod = kod;

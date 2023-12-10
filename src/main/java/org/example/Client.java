@@ -20,13 +20,10 @@ public class Client
         try (Socket socket = new Socket("localhost", 1234)) {
 
             // writing to server
-            PrintWriter out = new PrintWriter(
-                    socket.getOutputStream(), true);
+            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 
             // reading from server
-            BufferedReader in
-                    = new BufferedReader(new InputStreamReader(
-                    socket.getInputStream()));
+            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
             // object of scanner class
 

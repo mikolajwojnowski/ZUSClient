@@ -123,7 +123,11 @@ public class MainMenu extends JFrame implements ActionListener {
         {
             Main.logr.info("uzytkownik dokonuje próby uruchomienia modułu odpowiedzialnego za opłacanie składek");
             this.dispose();
-            //Oplata oplata = new Oplata(pesel, this.pensja);
+            try {
+                Oplata oplata = new Oplata(pesel,"10000");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         }
         if(e.getSource() == profileButton)
         {

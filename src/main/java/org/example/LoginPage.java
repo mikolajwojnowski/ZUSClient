@@ -6,13 +6,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.HashMap;
 import java.awt.BorderLayout;
 
 public class LoginPage implements ActionListener {
 
 
-    IDandPassword iDandPassword = new IDandPassword();
+    String pesel;
     JFrame frame = new JFrame();
 
     JButton loginButton = new JButton("Zaloguj");
@@ -165,42 +166,42 @@ public class LoginPage implements ActionListener {
         if(e.getSource() == loginButton)
         {
 
-            Main.logr.info("uzytkownik podejmuje probe logowania");
-
-            String pesel = userIDField.getText();
-            String password = String.valueOf(userPasswordField.getPassword()); //password
-            String wynikZapytania;
-
-            if(password.equals("password"))
+            if(!userIDField.getText().isEmpty())
             {
-                if(pesel.equals("111"))
-                {
-                    Main.logr.info("haslo prawidlowe");
-                    System.out.println("Sukces");
+                Main.logr.info("uzytkownik podejmuje próbe logowania");
+                String peselValue = new String();
+                String passwordValue = new String();
+                String wynikZapytania = new String();
+                peselValue = "Select * from podatnik where pesel like '" + userIDField.getText() + "'";
+                Client klient = new Client();
+                wynikZapytania = klient.zapytanie(peselValue);
+                passwordValue = userPasswordField.getText();
 
-//                    messageLabel.setForeground(Color.GREEN);
-//                    messageLabel.setText("Login successful");
+                System.out.println(passwordValue);
+                System.out.println(wynikZapytania);
+
+
+                if(passwordValue.equals(wynikZapytania))
+                {
+
+
+                    pesel = userIDField.getText();
                     frame.dispose();
                     MainMenu menu = new MainMenu(pesel);
 
                 }
-                else {
-                    messageLabel.setForeground(Color.RED);
-                    messageLabel.setText("Błędne hasło");
-                }
 
             }
-            else {
-                messageLabel.setForeground(Color.RED);
-                messageLabel.setText("Błędny PESEL");
-            }
+
+
+
 
         }
         if(e.getSource() == registerButton)
         {
             Main.logr.info("uzytkownik podejmuje probe zarejestrowania");
             frame.dispose();
-            //Register register = new Register();
+
             RegistrationPanel registrationPanel = new RegistrationPanel();
 
         }
