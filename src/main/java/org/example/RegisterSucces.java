@@ -51,8 +51,8 @@ public class RegisterSucces extends JFrame implements ActionListener
         this.email = email;
         this.imie = imie;
 
-        tekst.setText("Zaklad Utrzymania Sejmu");
-        tekst.setFont(new Font("MV Boli",Font.PLAIN,30));
+        tekst.setText("ZAKŁAD UBEZPIECZEN SPOŁECZNYCH");
+        tekst.setFont(new Font("Arial",Font.BOLD,30));
         tekst.setForeground(new Color(0,208,0));
 
         String dane1 = new String();
@@ -60,10 +60,10 @@ public class RegisterSucces extends JFrame implements ActionListener
         String dane2 = new String("Na twoj adres email " + email + " zostal wyslany kod weryfikacjyny.");
 
         twojeDane.setText(dane1);
-        twojeDane.setFont(new Font("MV Boli",Font.PLAIN,20));
+        twojeDane.setFont(new Font("Arial",Font.BOLD,20));
 
         twojeDane2.setText(dane2);
-        twojeDane2.setFont(new Font("MV Boli",Font.PLAIN,12));
+        twojeDane2.setFont(new Font("Arial",Font.BOLD,12));
 
         bgPanel.setBackground(new Color(146,227,151));
         bgPanel.setBounds(0,100,500,400);

@@ -146,6 +146,8 @@ public class RegistrationPanel extends JFrame {
                 }
                 if(imieB == true && nazwiskoB  == true && emailB == true && hasloB == true && pesel1B == true && peselB == true)
                 {
+                    int kod = 5;
+                    RegisterSucces emailo = new RegisterSucces(pesel,password,name,surname,email,kod);
                     Main.logr.info("uzytkownik podejmuje próbę rejestracji");
                     System.out.println(email);
                     Main.logr.info("uzytkownik przeszedł pierwszy etap rejestracji");
@@ -157,11 +159,11 @@ public class RegistrationPanel extends JFrame {
                     //tu error nie mozna parse  bo zapytanie jest niby null chuj wie czemu
 
                     //int kod = Integer.parseInt(klientx.zapytanie(zapytanie));
-                    int kod = 5;
+
 
                     dispose();
 
-                    RegisterSucces emailo = new RegisterSucces(pesel,password,name,surname,email,kod);
+
                 }
 
 
