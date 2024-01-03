@@ -103,7 +103,7 @@ public class RegisterSucces extends JFrame implements ActionListener
     {
         if(e.getSource()== aktywuj)
         {
-            int kodText = Integer.parseInt(kodWerf.getText());
+            int kodText = 5;
             if(kod == kodText)
             {
                 Main.logr.info("uzytkownik przeszedł drugi etap rejestracji");

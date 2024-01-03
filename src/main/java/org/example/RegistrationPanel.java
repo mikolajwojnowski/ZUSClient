@@ -121,7 +121,7 @@ public class RegistrationPanel extends JFrame {
                     warning.setVisible(true);
                     nazwiskoB = false;
                 }
-                if(pesel.length()>11||pesel.length()<11)
+                if(pesel.length()!=11)
                 {
 
                         Main.logr.info("uzytkownik podczas rejestracji podaje błędny numer pesel");
@@ -147,14 +147,15 @@ public class RegistrationPanel extends JFrame {
                 if(imieB == true && nazwiskoB  == true && emailB == true && hasloB == true && pesel1B == true && peselB == true)
                 {
                     int kod = 5;
+                    //chuj w ten kod juz i mail
+                    //tutaj przeskakuje do nowego okienka z kodem ktory ma przyjsc na email (nie dziala )
                     RegisterSucces emailo = new RegisterSucces(pesel,password,name,surname,email,kod);
+
                     Main.logr.info("uzytkownik podejmuje próbę rejestracji");
                     System.out.println(email);
                     Main.logr.info("uzytkownik przeszedł pierwszy etap rejestracji");
                     Client klientx = new Client();
-                    String zapytanie = new String("G");
-                    zapytanie = zapytanie + email;
-                    klientx.zapytanie(zapytanie);
+
 
                     //tu error nie mozna parse  bo zapytanie jest niby null chuj wie czemu
 

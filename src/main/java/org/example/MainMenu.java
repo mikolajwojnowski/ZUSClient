@@ -139,6 +139,7 @@ public class MainMenu extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(this, "Logging out...", "Log Out", JOptionPane.INFORMATION_MESSAGE);
             // You can close this window or navigate to the login screen
             frame.dispose();
+            System.exit(0);
 
         }
         //button 3 = pobierz podanie
@@ -148,6 +149,16 @@ public class MainMenu extends JFrame implements ActionListener {
             frame.dispose();
             try {
                 Podanie podanie = new Podanie(pesel);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+        if(e.getSource() == button2)
+        {
+            Main.logr.info("uzytkownik dokonuje próby uruchomienia modułu odpowiedzialnego za wysylanie podań");
+            frame.dispose();
+            try {
+                PodanieWyslij podanie = new PodanieWyslij(pesel);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
