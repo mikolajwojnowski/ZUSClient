@@ -6,6 +6,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
+import java.util.Random;
 
 public class RegistrationPanel extends JFrame {
 
@@ -146,10 +147,8 @@ public class RegistrationPanel extends JFrame {
                 }
                 if(imieB == true && nazwiskoB  == true && emailB == true && hasloB == true && pesel1B == true && peselB == true)
                 {
-                    int kod = 5;
-                    //chuj w ten kod juz i mail
-                    //tutaj przeskakuje do nowego okienka z kodem ktory ma przyjsc na email (nie dziala )
-                    RegisterSucces emailo = new RegisterSucces(pesel,password,name,surname,email,kod);
+
+
 
                     Main.logr.info("uzytkownik podejmuje próbę rejestracji");
                     System.out.println(email);
@@ -157,10 +156,17 @@ public class RegistrationPanel extends JFrame {
                     Client klientx = new Client();
 
 
-                    //tu error nie mozna parse  bo zapytanie jest niby null chuj wie czemu
+                    int kodWyslany = generateAuthenticationCode();
 
-                    //int kod = Integer.parseInt(klientx.zapytanie(zapytanie));
 
+
+                    EmailSenderService emailSenderService = new EmailSenderService();
+                    emailSenderService.sendEmail(email,"Authentication Code",kodWyslany);
+
+
+
+                    Main.logr.info("wyslany kod na email to: "+kodWyslany);
+                    RegisterSucces emailo = new RegisterSucces(pesel,password,name,surname,email, kodWyslany);
 
                     dispose();
 
@@ -188,7 +194,12 @@ public class RegistrationPanel extends JFrame {
         fieldPanel.add(component, BorderLayout.CENTER);
         return fieldPanel;
     }
-
-
+    public int generateAuthenticationCode() {
+        Random random = new Random();
+        int min = 1000;
+        int max = 9999;
+        int kodzik = random.nextInt(max - min + 1) + min;
+        return kodzik;
+    }
 
 }

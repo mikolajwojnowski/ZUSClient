@@ -16,6 +16,7 @@ public class MainMenu extends JFrame implements ActionListener {
     String wiek;
     String pesel;
 
+    String email;
     String pensja;
     String imie;
     String nazwisko;
@@ -54,6 +55,10 @@ public class MainMenu extends JFrame implements ActionListener {
 
     Font buttonFont = new Font("Arial", Font.BOLD, 14);
     public MainMenu(String pesel) {
+
+        this.imie = imie;
+        this.nazwisko=nazwisko;
+        this.email = email;
 
 
         button1.setSize(new Dimension(100,100));
@@ -131,7 +136,7 @@ public class MainMenu extends JFrame implements ActionListener {
         }
         if(e.getSource() == profileButton)
         {
-            JOptionPane.showMessageDialog(this, "Profile information", "Profile", JOptionPane.INFORMATION_MESSAGE);
+            ProfileInformationWindow profileInformationWindow = new ProfileInformationWindow(email,"name","surname",pesel,"password",true);
         }
         if(e.getSource() == logoutButton)
         {

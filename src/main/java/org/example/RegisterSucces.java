@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 public class RegisterSucces extends JFrame implements ActionListener
 {
 
-    int kod;
+    int kodWyslany;
     String pesel;
     String haslo;
     String imie;
@@ -41,10 +41,10 @@ public class RegisterSucces extends JFrame implements ActionListener
      * @param nazwisko pole opisuje nazwisko podatnika
      * @param email    pole opisuje email podatnika
      */
-    public RegisterSucces(String pesel, String haslo, String imie, String nazwisko, String email,int kod)
+    public RegisterSucces(String pesel, String haslo, String imie, String nazwisko, String email,int kodWyslany)
     {
         Main.logr.info("do uzytkownika wyslano emial potwierdzajacy");
-        this.kod = kod;
+        this.kodWyslany = kodWyslany;
         this.pesel = pesel;
         this.haslo = haslo;
         this.nazwisko = nazwisko;
@@ -101,11 +101,19 @@ public class RegisterSucces extends JFrame implements ActionListener
     @Override
     public void actionPerformed(ActionEvent e)
     {
+        String kodWpisany = kodWerf.getText();
+
+        int kod = Integer.parseInt(kodWpisany);
+
+        Main.logr.info("kod to"+kodWyslany);
         if(e.getSource()== aktywuj)
         {
-            int kodText = 5;
-            if(kod == kodText)
+
+
+            if(kod==kodWyslany)
             {
+
+                LoginPage logowanie = new LoginPage();
                 Main.logr.info("uzytkownik przeszedł drugi etap rejestracji");
                 String insertion = "INSERT into podatnik values ( "+pesel+", '" + haslo +"' , '" + email + "' , '" + imie + " ' , '" + nazwisko + " ')";
                 String insertion_02 = "INSERT into WARTOSC values ( '" + pesel+ "'," +0 + ")";
@@ -120,7 +128,7 @@ public class RegisterSucces extends JFrame implements ActionListener
                 wstaw2.zapytanie(insertion_02);
 
                 this.dispose();
-                LoginPage logowanie = new LoginPage();
+
 
 
             }

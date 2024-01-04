@@ -109,8 +109,9 @@ public class Podanie extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == powrot) {
-            MainMenu menu = new MainMenu(pesel);
             this.dispose();
+            MainMenu menu = new MainMenu(pesel);
+
         }
         if (e.getSource() == emAndRentButton) {
             emAndRentButton.setBackground(new Color(102, 204, 0));

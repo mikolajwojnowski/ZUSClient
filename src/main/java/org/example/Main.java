@@ -1,4 +1,6 @@
 package org.example;
+import org.springframework.boot.SpringApplication;
+
 import java.io.IOException;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
@@ -11,7 +13,6 @@ public class Main {
 
     public static void main(String[] args) throws IOException, InterruptedException
     {
-
         FileHandler fh = new FileHandler("logs.log");
         fh.setLevel(Level.ALL);
         logr.addHandler(fh);
