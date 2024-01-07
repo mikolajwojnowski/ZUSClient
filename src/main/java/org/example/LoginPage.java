@@ -46,7 +46,7 @@ public class LoginPage implements ActionListener {
 
     ImageIcon ZusIcon = new ImageIcon("pliki/logozus.png");
     JLabel ZusLabel = new JLabel(ZusIcon);
-    HashMap<String,String> logininfo = new HashMap<>();
+
 
 
     LoginPage()
@@ -165,30 +165,38 @@ public class LoginPage implements ActionListener {
         }
         if(e.getSource() == loginButton)
         {
-
             if(!userIDField.getText().isEmpty())
             {
                 Main.logr.info("uzytkownik podejmuje próbe logowania");
-                String peselValue = new String();
-                String passwordValue = new String();
-                String wynikZapytania = new String();
-                peselValue = "Select * from podatnik where pesel like '" + userIDField.getText() + "'";
-                Client klient = new Client();
-                wynikZapytania = klient.zapytanie(peselValue);
-                passwordValue = userPasswordField.getText();
 
-                System.out.println(passwordValue);
+
+                String passwordValue;
+
+                passwordValue = userPasswordField.getText();
+                pesel = userIDField.getText();
+
+                //wyslanie danych na serwer w celu dalszego przetwarzania
+
+                String userLoginData = pesel +" "+passwordValue;
+                String commandType = "LOGIN";
+                Client client = new Client();
+                client.zapytanie(commandType,userLoginData);
+                String wynikZapytania = client.odpowiedzOdSerwera;
+
+
+
+                //System.out.println(passwordValue);
                 System.out.println(wynikZapytania);
 
 
-                if(passwordValue.equals(wynikZapytania))
+                if(wynikZapytania.equals("success"))
                 {
-
-
-                    pesel = userIDField.getText();
                     frame.dispose();
                     MainMenu menu = new MainMenu(pesel);
 
+                }
+                else{
+                    messageLabel.setText("Wrong password");
                 }
 
             }

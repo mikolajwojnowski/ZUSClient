@@ -154,9 +154,11 @@ public class Oplata extends JFrame implements ActionListener {
             System.out.println(dzienBox.getSelectedItem());
             System.out.println(miesiacBox.getSelectedItem());
             System.out.println(rokBox.getSelectedItem());
-            String insert = "Insert into wplaty values ( '" + pesel  +"','" +rokBox.getSelectedItem()+"/"+miesiacBox.getSelectedItem() +"/"+dzienBox.getSelectedItem() +"'," + pensjaField.getText() +")";
-            Client client = new Client();
-            System.out.println(client.zapytanie(insert));
+
+            //TO DO !!!!!!!! <----------
+           // String insert = "Insert into wplaty values ( '" + pesel  +"','" +rokBox.getSelectedItem()+"/"+miesiacBox.getSelectedItem() +"/"+dzienBox.getSelectedItem() +"'," + pensjaField.getText() +")";
+            //Client client = new Client();
+           // System.out.println(client.zapytanie(insert));
             dokonanoWplaty.setVisible(true);
             try {
                 TimeUnit.MILLISECONDS.sleep(220);

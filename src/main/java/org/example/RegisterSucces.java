@@ -101,31 +101,41 @@ public class RegisterSucces extends JFrame implements ActionListener
     @Override
     public void actionPerformed(ActionEvent e)
     {
+
+        //odpowiedzialne za weryfikacje kodu wyslanego na maila
         String kodWpisany = kodWerf.getText();
 
         int kod = Integer.parseInt(kodWpisany);
 
         Main.logr.info("kod to"+kodWyslany);
+
         if(e.getSource()== aktywuj)
         {
-
-
+            //jesli kody sa takie same to przekierowujemy na strone logowania
+            //tworzymy obiekt klasy Client ktory odpowiada za polaczenie z serwerem i przekazuje typ komendy
+            // REGISTER_SUCCESS i dane uzytkownika w takiej formie ktora serwer sobie polaczy w zapytanie sql
+            //i doda uzytkownika o takich danych do bazy danych
             if(kod==kodWyslany)
             {
 
                 LoginPage logowanie = new LoginPage();
+
                 Main.logr.info("uzytkownik przeszedł drugi etap rejestracji");
-                String insertion = "INSERT into podatnik values ( "+pesel+", '" + haslo +"' , '" + email + "' , '" + imie + " ' , '" + nazwisko + " ')";
-                String insertion_02 = "INSERT into WARTOSC values ( '" + pesel+ "'," +0 + ")";
-                Client wstaw2 = new Client();
-                Client wstaw = new Client();
-                wstaw.zapytanie(insertion);
+
+                //odpowiedzialne za przekazanie danych na serwer ktory stworzy zapytanie i je wysle do bazy danych
+                String userData = pesel +" " +haslo+" "+email+" "+imie+" "+nazwisko;
+                String commandType = "REGISTER_SUCCESS";
+
+                Client client = new Client();
+                client.zapytanie(commandType,userData);
+
+
                 try {
                     TimeUnit.MILLISECONDS.sleep(350);
                 } catch (InterruptedException ex) {
                     throw new RuntimeException(ex);
                 }
-                wstaw2.zapytanie(insertion_02);
+
 
                 this.dispose();
 

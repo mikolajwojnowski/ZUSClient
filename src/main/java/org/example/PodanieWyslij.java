@@ -135,7 +135,7 @@ public class PodanieWyslij extends JFrame implements ActionListener
             if((sprawdzenie[0] == 'p') && (sprawdzenie[1]=='d')&&(sprawdzenie[2])=='f') {
                 formatPdf.setVisible(false);
                 Client client = new Client();
-                client.zapytanie("F");
+                //client.zapytanie("F");
                 try {
                     TimeUnit.SECONDS.sleep(1);
                 } catch (InterruptedException ex) {

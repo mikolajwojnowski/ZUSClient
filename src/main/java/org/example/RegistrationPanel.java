@@ -91,22 +91,21 @@ public class RegistrationPanel extends JFrame {
                 String sex = (String) sexComboBox.getSelectedItem();
                 String email = emailField.getText();
 
-                select = "Select * from podatnik where pesel like '" + pesel +"'";
 
-                Client klient1 = new Client();
-                odpowiedz = klient1.zapytanie(select);
 
-                if(!odpowiedz.isEmpty())
+                Client klient = new Client();
+                klient.zapytanie("REGISTER",pesel);
+
+                if(klient.odpowiedzOdSerwera.equals("false"))
                 {
                     Main.logr.info("uzytkownik podczas rejestracji podaje istniejący juz w systemie numer pesel");
                     warning.setText("Taki uzytkownik juz istnieje !");
                     warning.setVisible(true);
                     pesel1B = false;
-
                 }
                 else
                 {
-                    insert = true;
+                    pesel1B = true;
                 }
                 if(name.isEmpty())
                 {
@@ -153,7 +152,7 @@ public class RegistrationPanel extends JFrame {
                     Main.logr.info("uzytkownik podejmuje próbę rejestracji");
                     System.out.println(email);
                     Main.logr.info("uzytkownik przeszedł pierwszy etap rejestracji");
-                    Client klientx = new Client();
+
 
 
                     int kodWyslany = generateAuthenticationCode();
@@ -166,7 +165,7 @@ public class RegistrationPanel extends JFrame {
 
 
                     Main.logr.info("wyslany kod na email to: "+kodWyslany);
-                    RegisterSucces emailo = new RegisterSucces(pesel,password,name,surname,email, kodWyslany);
+                    RegisterSucces registerSucces = new RegisterSucces(pesel,password,name,surname,email, kodWyslany);
 
                     dispose();
 
