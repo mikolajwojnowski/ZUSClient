@@ -11,36 +11,36 @@ import java.util.Random;
 public class RegistrationPanel extends JFrame {
 
     IDandPassword iDandPassword = new IDandPassword();
-    private JPanel panel = new JPanel(new GridLayout(8, 2, 10, 10));
+    private JPanel panel = new JPanel(new GridLayout(8, 2, 20, 20));
     private JTextField nameField = new JTextField();
     private JTextField surnameField = new JTextField();
     private JPasswordField passwordField = new JPasswordField();
     private JTextField peselField = new JTextField();
     private JTextField ageField = new JTextField();
-    private JComboBox<String> sexComboBox = new JComboBox<>(new String[]{"Male", "Female"});
+    private JComboBox<String> sexComboBox = new JComboBox<>(new String[]{"Mężczyczna", "Kobieta"});
     private JTextField emailField = new JTextField();
-    private JButton submitButton = new JButton("Submit");
-    private JButton returnButton = new JButton("Return");
+    private JButton submitButton = new JButton("Prześlij");
+    private JButton returnButton = new JButton("Powrót");
     JLabel warning = new JLabel("");
 
     public RegistrationPanel() {
-        setTitle("Enhanced Registration Panel");
+        setTitle("Panel Rejestracyjny");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         warning.setVisible(false);
         warning.setForeground(Color.RED);
-        warning.setBounds(170,350,270,40);
+        warning.setBounds(250,350,270,50);
         // Add padding to the panel
         panel.setBorder(new EmptyBorder(20, 20, 20, 20));
 
-        panel.add(createLabeledField("Name:", nameField));
-        panel.add(createLabeledField("Surname:", surnameField));
+        panel.add(createLabeledField("Imię:", nameField));
+        panel.add(createLabeledField("Nazwisko:", surnameField));
 
-        panel.add(createLabeledField("Password:", passwordField));
+        panel.add(createLabeledField("Hasło:", passwordField));
         panel.add(createLabeledField("PESEL:", peselField));
 
-        panel.add(createLabeledField("Age:", ageField));
-        panel.add(createLabeledField("Sex:", sexComboBox));
+        panel.add(createLabeledField("Wiek:", ageField));
+        panel.add(createLabeledField("Płeć:", sexComboBox));
 
         panel.add(createLabeledField("Email:", emailField));
 

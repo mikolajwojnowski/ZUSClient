@@ -101,7 +101,7 @@ public class Podanie extends JFrame implements ActionListener {
         this.setSize(720, 520);
         this.setVisible(true);
         this.setLocationRelativeTo(null);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
     }
 

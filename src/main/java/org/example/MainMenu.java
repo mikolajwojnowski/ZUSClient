@@ -26,16 +26,20 @@ public class MainMenu extends JFrame implements ActionListener {
     //JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
     ImageIcon icon1 = new ImageIcon("pliki/bill.png");
-    JButton button1 = new JButton("Opłać składkę", icon1);
+    JButton skladkaZdrowotnaButton = new JButton("Opłać składkę zdrowotną", icon1);
+
+    JButton skladkaEmerytalnaButton = new JButton("Opłać składkę emerytalną",icon1);
+
+
 
     ImageIcon icon2 = new ImageIcon("pliki/upload.png");
-    JButton button2 = new JButton("Wyślij podanie", icon2);
+    JButton wyslijPodanieButton = new JButton("Wyślij podanie", icon2);
 
     ImageIcon icon3 = new ImageIcon("pliki/pobierzPodanie.png");
-    JButton button3 = new JButton("Pobierz Podanie", icon3);
+    JButton pobierzPodanieButton = new JButton("Pobierz Podanie", icon3);
 
     ImageIcon icon4 = new ImageIcon("pliki/information.png");
-    JButton button4 = new JButton("Raport Emerytalny", icon4);
+    JButton RaportEmerytalnyButton = new JButton("Raport Emerytalny", icon4);
 
     ImageIcon icon5 = new ImageIcon("pliki/user.png");
     JButton profileButton = new JButton("Profil", icon5);
@@ -53,45 +57,49 @@ public class MainMenu extends JFrame implements ActionListener {
     JPanel westPanel = new JPanel();
     JPanel northPanel = new JPanel();
 
-    Font buttonFont = new Font("Arial", Font.BOLD, 14);
+    Font buttonFont = new Font("Arial", Font.BOLD, 10);
     public MainMenu(String pesel) {
 
         this.imie = imie;
         this.nazwisko=nazwisko;
         this.email = email;
+        this.pesel = pesel;
 
+        skladkaZdrowotnaButton.setSize(new Dimension(100,100));
+        wyslijPodanieButton.setPreferredSize(new Dimension(40,40));
+        pobierzPodanieButton.setPreferredSize(new Dimension(40,40));
+        RaportEmerytalnyButton.setPreferredSize(new Dimension(40,40));
+        skladkaEmerytalnaButton.setSize(new Dimension(40,40));
 
-        button1.setSize(new Dimension(100,100));
-        button2.setPreferredSize(new Dimension(40,40));
-        button3.setPreferredSize(new Dimension(40,40));
-        button4.setPreferredSize(new Dimension(40,40));
-
-        button1.setFont(buttonFont);
+        skladkaZdrowotnaButton.setFont(buttonFont);
         //button1.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
         //button1.setHorizontalAlignment(SwingConstants.CENTER);
-        button1.setHorizontalTextPosition(SwingConstants.LEADING);
-        button2.setHorizontalTextPosition(SwingConstants.LEADING);
-        button3.setHorizontalTextPosition(SwingConstants.LEADING);
-        button4.setHorizontalTextPosition(SwingConstants.LEADING);
+        skladkaZdrowotnaButton.setHorizontalTextPosition(SwingConstants.LEADING);
+        wyslijPodanieButton.setHorizontalTextPosition(SwingConstants.LEADING);
+        pobierzPodanieButton.setHorizontalTextPosition(SwingConstants.LEADING);
+        RaportEmerytalnyButton.setHorizontalTextPosition(SwingConstants.LEADING);
+        skladkaEmerytalnaButton.setHorizontalTextPosition(SwingConstants.LEADING);
 
-        button2.setFont( buttonFont);
-        button3.setFont( buttonFont);
-        button4.setFont( buttonFont);
+        skladkaEmerytalnaButton.setFont(buttonFont);
+        wyslijPodanieButton.setFont( buttonFont);
+        pobierzPodanieButton.setFont( buttonFont);
+        RaportEmerytalnyButton.setFont( buttonFont);
         logoutButton.setFont(buttonFont);
         profileButton.setFont(buttonFont);
 
         //actions listener
-        button1.addActionListener(this);
-        button2.addActionListener(this);
-        button3.addActionListener(this);
-        button4.addActionListener(this);
+        skladkaZdrowotnaButton.addActionListener(this);
+        wyslijPodanieButton.addActionListener(this);
+        pobierzPodanieButton.addActionListener(this);
+        RaportEmerytalnyButton.addActionListener(this);
+        skladkaEmerytalnaButton.addActionListener(this);
         profileButton.addActionListener(this);
         logoutButton.addActionListener(this);
 
 
 
 
-        frame.setLayout(new BorderLayout(50,50));
+        frame.setLayout(new BorderLayout(30,30));
         frame.add(logoutButton,BorderLayout.SOUTH);
         //frame.add(returnButton,BorderLayout.WEST);
         frame.add(profileButton,BorderLayout.EAST);
@@ -100,11 +108,12 @@ public class MainMenu extends JFrame implements ActionListener {
         frame.add(westPanel,BorderLayout.WEST);
         frame.add(northPanel,BorderLayout.NORTH);
 
-        centerPanel.setLayout(new GridLayout(2,2,100,100));
-        centerPanel.add(button1);
-        centerPanel.add(button2);
-        centerPanel.add(button3);
-        centerPanel.add(button4);
+        centerPanel.setLayout(new GridLayout(3,2,100,60));
+        centerPanel.add(skladkaZdrowotnaButton);
+        centerPanel.add(wyslijPodanieButton);
+        centerPanel.add(pobierzPodanieButton);
+        centerPanel.add(RaportEmerytalnyButton);
+        centerPanel.add(skladkaEmerytalnaButton);
 
         westPanel.setLayout(new GridLayout(4,1,10,10));
 
@@ -124,7 +133,7 @@ public class MainMenu extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         // Handle button actions if needed
         //button 1 = opłać składke
-        if(e.getSource() == button1)
+        if(e.getSource() == skladkaZdrowotnaButton)
         {
             Main.logr.info("uzytkownik dokonuje próby uruchomienia modułu odpowiedzialnego za opłacanie składek");
             this.dispose();
@@ -136,7 +145,7 @@ public class MainMenu extends JFrame implements ActionListener {
         }
         if(e.getSource() == profileButton)
         {
-            ProfileInformationWindow profileInformationWindow = new ProfileInformationWindow(email,"name","surname",pesel,"password",true);
+            ProfileInformationWindow profileInformationWindow = new ProfileInformationWindow(pesel,true);
         }
         if(e.getSource() == logoutButton)
         {
@@ -148,20 +157,21 @@ public class MainMenu extends JFrame implements ActionListener {
 
         }
         //button 3 = pobierz podanie
-        if(e.getSource() == button3)
+        if(e.getSource() == pobierzPodanieButton)
         {
             Main.logr.info("uzytkownik dokonuje próby uruchomienia modułu odpowiedzialnego za pobieranie podań");
-            frame.dispose();
+
             try {
                 Podanie podanie = new Podanie(pesel);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
         }
-        if(e.getSource() == button2)
+        //wyslij podanie
+        if(e.getSource() == wyslijPodanieButton)
         {
             Main.logr.info("uzytkownik dokonuje próby uruchomienia modułu odpowiedzialnego za wysylanie podań");
-            frame.dispose();
+
             try {
                 PodanieWyslij podanie = new PodanieWyslij(pesel);
             } catch (IOException ex) {

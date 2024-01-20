@@ -36,7 +36,7 @@ public class Oplata extends JFrame implements ActionListener {
     JLabel panelWartosc = new JLabel("Wartość Składki w zł");
     JLabel dataWplaty = new JLabel("Data wpłaty");
 
-    JLabel dokonanoWplaty = new JLabel("Dokonano Opłaty Składki Emerytalnej");
+    JLabel dokonanoWplaty = new JLabel("Dokonano Opłaty Składki Zdrowotnej");
 
     JPanel dzienPanel = new JPanel();
     JPanel miesiacPanel = new JPanel();
@@ -95,12 +95,13 @@ public class Oplata extends JFrame implements ActionListener {
         powrot.setOpaque(false);
         powrot.setContentAreaFilled(false);
         powrot.addActionListener(this);
+        powrot.setFocusable(true);
         this.pesel = pesel;
         panelPensja.setLayout(new BorderLayout());
         panelPensja.setBounds(150,210,100,40);
         panelPensja.add(pensjaField);
         this.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("pliki/tlo.jpg")))));
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.getContentPane().setBackground(Color.WHITE);
         this.setSize(720, 520);
         this.setResizable(false);
@@ -127,8 +128,8 @@ public class Oplata extends JFrame implements ActionListener {
          */
         if(e.getSource() == powrot)
         {
-            this.dispose();
-            MainMenu menuGlowne = new MainMenu(pesel);
+            dispose();
+            //MainMenu menuGlowne = new MainMenu(pesel);
         }
 
         if(e.getSource() == dzienBox)
@@ -139,7 +140,7 @@ public class Oplata extends JFrame implements ActionListener {
         {
             miesiac = (String) miesiacBox.getSelectedItem();
         }
-        if(e.getSource() == dzienBox)
+        if(e.getSource() == rokBox)
         {
             rok = (String) rokBox.getSelectedItem();
         }
@@ -148,18 +149,31 @@ public class Oplata extends JFrame implements ActionListener {
          */
         if(e.getSource() == zatwierdz)
         {
-            Main.logr.info("uzytkownik dokonuje oplaty");
-            System.out.println(pesel);
-            System.out.println(pensjaField.getText());
-            System.out.println(dzienBox.getSelectedItem());
-            System.out.println(miesiacBox.getSelectedItem());
-            System.out.println(rokBox.getSelectedItem());
+            Main.logr.info("uzytkownik dokonuje oplaty na ubezpieczenie zdrowotne");
 
-            //TO DO !!!!!!!! <----------
-           // String insert = "Insert into wplaty values ( '" + pesel  +"','" +rokBox.getSelectedItem()+"/"+miesiacBox.getSelectedItem() +"/"+dzienBox.getSelectedItem() +"'," + pensjaField.getText() +")";
-            //Client client = new Client();
-           // System.out.println(client.zapytanie(insert));
-            dokonanoWplaty.setVisible(true);
+            String pensja = pensjaField.getText();
+
+            Client client = new Client();
+            String commandType = "OPLAC_SKLADKE";
+            String data = rok+"-"+miesiac+"-"+dzien;
+            System.out.println(data);
+            System.out.println(pensja);
+            System.out.println(" ");
+            String zapytanie = pensja +" " + data + " " +  pesel;
+            client.zapytanie(commandType,zapytanie);
+
+            if(client.odpowiedzOdSerwera.equals("Oplacono"))
+            {
+                Main.logr.info("oplacono skladke pomyslnie");
+                dokonanoWplaty.setVisible(true);
+            }else {
+                dokonanoWplaty.setText("blad");
+            }
+
+
+
+
+
             try {
                 TimeUnit.MILLISECONDS.sleep(220);
             } catch (InterruptedException ex) {

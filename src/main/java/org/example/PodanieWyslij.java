@@ -93,7 +93,7 @@ public class PodanieWyslij extends JFrame implements ActionListener
         this.setSize(720,520);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.add(formatPdf);
         this.add(cofnij);
 

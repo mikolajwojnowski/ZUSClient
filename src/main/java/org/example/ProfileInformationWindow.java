@@ -2,8 +2,9 @@ package org.example;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.SQLException;
 
-public class ProfileInformationWindow extends JFrame {
+public class ProfileInformationWindow  extends JFrame {
 
     private JTextField emailTextField;
     private JTextField nameTextField;
@@ -11,49 +12,60 @@ public class ProfileInformationWindow extends JFrame {
     private JPasswordField passwordField;
     private JTextField peselField;
 
-    public ProfileInformationWindow(String email, String name, String surname, String pesel, String password, boolean isViewMode) {
+    public ProfileInformationWindow(String pesel, boolean isViewMode) {
         setTitle("Profile Information");
         setSize(400, 200);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        createUI(isViewMode);
-
-        // Set data if not in view mode
-        if (!isViewMode) {
-            emailTextField.setText(email);
-            nameTextField.setText(name);
-            surnameTextField.setText(surname);
-            passwordField.setText(password);
-            peselField.setText(pesel);
-        }
-
-        setVisible(true);
-    }
-
-    private void createUI(boolean isViewMode) {
         JPanel panel = new JPanel(new GridLayout(5, 2, 10, 10));
         panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
+        String imie ="";
+        String nazwisko="";
+        String haslo="";
+        String email="";
+
+        Client client = new Client();
+        String commandType = "PROFILE_INFO";
+
+        client.zapytanie(commandType,pesel);
+
+        String odpowiedz = client.odpowiedzOdSerwera;
+
+
+        if(!odpowiedz.isEmpty())
+        {
+            String[] data = odpowiedz.split("\\s+");
+            imie = data[1];
+            nazwisko=data[2];
+            email=data[0];
+            haslo=data[3];
+        }else
+        {
+            Main.logr.info("nie ma danych dla takiego peselu");
+        }
+
+
         JLabel emailLabel = new JLabel("Email:");
-        emailTextField = new JTextField("email");
+        emailTextField = new JTextField(email);
         emailTextField.setEditable(!isViewMode);
 
-        JLabel nameLabel = new JLabel("Name:");
-        nameTextField = new JTextField("name");
+        JLabel nameLabel = new JLabel("Imie:");
+        nameTextField = new JTextField(imie);
         nameTextField.setEditable(!isViewMode);
 
-        JLabel surnameLabel = new JLabel("Surname:");
-        surnameTextField = new JTextField("surname");
+        JLabel surnameLabel = new JLabel("Nazwisko:");
+        surnameTextField = new JTextField(nazwisko);
 
         surnameTextField.setEditable(!isViewMode);
 
-        JLabel passwordLabel = new JLabel("Password:");
-        passwordField = new JPasswordField("password");
+        JLabel passwordLabel = new JLabel("Haslo:");
+        passwordField = new JPasswordField(haslo);
         passwordField.setEditable(!isViewMode);
 
         JLabel peselLabel = new JLabel("Pesel:");
-        peselField = new JTextField("pesel");
+        peselField = new JTextField(pesel);
         peselField.setEditable(!isViewMode);
 
         panel.add(emailLabel);
@@ -68,32 +80,11 @@ public class ProfileInformationWindow extends JFrame {
         panel.add(peselLabel);
         panel.add(peselField);
 
-        if (!isViewMode) {
-            JButton saveButton = new JButton("Save");
-            saveButton.addActionListener(e -> saveProfileInformation());
-            panel.add(new JLabel()); // Empty label for spacing
-            panel.add(saveButton);
-        }
-
         add(panel);
+        setVisible(true);
     }
 
-    private void saveProfileInformation() {
-        String email = emailTextField.getText();
-        String name = nameTextField.getText();
-        String surname = surnameTextField.getText();
-        char[] password = passwordField.getPassword(); // Note: For better security, consider using other components for password input.
 
-        // TODO: Add logic to save the profile information (e.g., to a database or file)
 
-        // Display a message (you can replace this with your saving logic)
-        JOptionPane.showMessageDialog(this, "Profile information saved successfully.");
-    }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            // Example usage: create an instance for view mode
-            new ProfileInformationWindow("example@gmail.com", "John", "Doe", "123456789", "password", true);
-        });
-    }
 }

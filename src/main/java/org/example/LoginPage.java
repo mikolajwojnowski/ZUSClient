@@ -22,6 +22,8 @@ public class LoginPage implements ActionListener {
 
     JButton registerButton = new JButton("Zarejestruj");
 
+    JButton forgotPassword = new JButton("Zapomniałem hasła");
+
     JTextField userIDField = new JTextField(20);
 
 
@@ -49,15 +51,9 @@ public class LoginPage implements ActionListener {
 
 
 
+
     LoginPage()
     {
-
-
-//        panel1.setBackground(Color.BLACK);
-//        panel2.setBackground(Color.WHITE);
-//        panel3.setBackground(Color.YELLOW);
-//        panel4.setBackground(Color.magenta);
-//        panel5.setBackground(Color.blue);
 
 
         panel1.setPreferredSize(new Dimension(100,250));
@@ -116,15 +112,16 @@ public class LoginPage implements ActionListener {
         buttonsPanel.add(loginButton);
         buttonsPanel.add(resetButton);
         buttonsPanel.add(registerButton);
+        buttonsPanel.add(forgotPassword);
 
         gbc.gridx = 1;
         gbc.gridy = 3;
         gbc.anchor = GridBagConstraints.EAST;
         GridPanel.add(buttonsPanel,gbc);
 
-        gbc.gridx = 2;
-        gbc.gridy = 1;
-        gbc.anchor = GridBagConstraints.NORTH;
+        gbc.gridx = 4;
+        gbc.gridy = 4;
+        gbc.anchor = GridBagConstraints.SOUTH;
         GridPanel.add(messageLabel);
 
         panel2.setLayout(new GridBagLayout());
@@ -141,6 +138,8 @@ public class LoginPage implements ActionListener {
         loginButton.addActionListener(this);
         registerButton.addActionListener(this);
         registerButton.setFocusable(false);
+        forgotPassword.addActionListener(this);
+        forgotPassword.setFocusable(false);
 
 
         frame.setBackground(Color.WHITE);
@@ -154,6 +153,7 @@ public class LoginPage implements ActionListener {
 
 
     @Override
+
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()== resetButton)
         {
@@ -163,8 +163,15 @@ public class LoginPage implements ActionListener {
             checkBox.setSelected(false);
 
         }
+        if(e.getSource() == forgotPassword)
+        {
+            Main.logr.info("uzytkownik wlaczyl modul odpowiedzialny za przypomnienie hasla");
+            frame.dispose();
+            ForgotPassword ForgotPassword = new ForgotPassword();
+        }
         if(e.getSource() == loginButton)
         {
+
             if(!userIDField.getText().isEmpty())
             {
                 Main.logr.info("uzytkownik podejmuje próbe logowania");
