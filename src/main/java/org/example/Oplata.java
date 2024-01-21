@@ -36,7 +36,7 @@ public class Oplata extends JFrame implements ActionListener {
     JLabel panelWartosc = new JLabel("Wartość Składki w zł");
     JLabel dataWplaty = new JLabel("Data wpłaty");
 
-    JLabel dokonanoWplaty = new JLabel("Dokonano Opłaty Składki Zdrowotnej");
+    JLabel dokonanoWplaty = new JLabel("Dokonano Opłaty Składki Emerytalnej");
 
     JPanel dzienPanel = new JPanel();
     JPanel miesiacPanel = new JPanel();
@@ -46,6 +46,8 @@ public class Oplata extends JFrame implements ActionListener {
     JComboBox miesiacBox = new JComboBox(miesiacTab);
 
     JComboBox rokBox = new JComboBox(rokTab);
+
+
 
 
     /**
@@ -78,16 +80,14 @@ public class Oplata extends JFrame implements ActionListener {
         dokonanoWplaty.setBounds(200,170,500,40);
 
 
-        this.pensja = pensja;
-        Double pensjaDouble;
-        pensjaDouble = Double.valueOf(pensja);
-        pensjaDouble = pensjaDouble * 0.195;
-        DecimalFormat df = new DecimalFormat("##.#");
-        JLabel wartoscSkladkiLabel = new JLabel("Wartosc składki powinna wynosić minimum :" + df.format(pensjaDouble) + "zł");
-        wartoscSkladkiLabel.setBounds(150,260,400,40);
+
+
+       // DecimalFormat df = new DecimalFormat("##.#");
+        //JLabel wartoscSkladkiLabel = new JLabel("Wartosc składki powinna wynosić minimum :" + df.format() + "zł");
+       // wartoscSkladkiLabel.setBounds(150,260,400,40);
         panelWartosc.setBounds(150,240,200,40);
         dataWplaty.setBounds(430,240,200,40);
-        wartoscSkladkiLabel.setForeground(Color.BLUE);
+       // wartoscSkladkiLabel.setForeground(Color.BLUE);
         this.pensja = pensja;
         this.pesel = pesel;
         powrot.setBounds(100,300,64,64);
@@ -108,7 +108,7 @@ public class Oplata extends JFrame implements ActionListener {
         this.setLayout(null);
         this.setVisible(true);
         this.setLocationRelativeTo(null);
-        this.add(wartoscSkladkiLabel);
+        //this.add(wartoscSkladkiLabel);
         this.add(dataWplaty);
         this.add(zatwierdz);
         this.add(powrot);
@@ -129,7 +129,7 @@ public class Oplata extends JFrame implements ActionListener {
         if(e.getSource() == powrot)
         {
             dispose();
-            //MainMenu menuGlowne = new MainMenu(pesel);
+
         }
 
         if(e.getSource() == dzienBox)
@@ -149,7 +149,7 @@ public class Oplata extends JFrame implements ActionListener {
          */
         if(e.getSource() == zatwierdz)
         {
-            Main.logr.info("uzytkownik dokonuje oplaty na ubezpieczenie zdrowotne");
+            Main.logr.info("uzytkownik dokonuje oplaty na ubezpieczenie emerytalne");
 
             String pensja = pensjaField.getText();
 
@@ -164,15 +164,11 @@ public class Oplata extends JFrame implements ActionListener {
 
             if(client.odpowiedzOdSerwera.equals("Oplacono"))
             {
-                Main.logr.info("oplacono skladke pomyslnie");
+                Main.logr.info("oplacono skladke emerytalną pomyslnie");
                 dokonanoWplaty.setVisible(true);
             }else {
                 dokonanoWplaty.setText("blad");
             }
-
-
-
-
 
             try {
                 TimeUnit.MILLISECONDS.sleep(220);

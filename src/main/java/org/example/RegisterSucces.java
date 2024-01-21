@@ -20,7 +20,8 @@ public class RegisterSucces extends JFrame implements ActionListener
     String imie;
     String nazwisko;
     String email;
-
+    String wiek;
+    String plec;
     JTextField kodWerf = new JTextField();
     JLabel tekst = new JLabel();
     JPanel greenPanel = new JPanel();
@@ -41,7 +42,7 @@ public class RegisterSucces extends JFrame implements ActionListener
      * @param nazwisko pole opisuje nazwisko podatnika
      * @param email    pole opisuje email podatnika
      */
-    public RegisterSucces(String pesel, String haslo, String imie, String nazwisko, String email,int kodWyslany)
+    public RegisterSucces(String pesel, String haslo, String imie, String nazwisko, String email,int kodWyslany, int wiek,String sex)
     {
         Main.logr.info("do uzytkownika wyslano emial potwierdzajacy");
         this.kodWyslany = kodWyslany;
@@ -50,6 +51,9 @@ public class RegisterSucces extends JFrame implements ActionListener
         this.nazwisko = nazwisko;
         this.email = email;
         this.imie = imie;
+        this.wiek = String.valueOf(wiek);
+        this.plec = sex;
+
 
         tekst.setText("ZAKŁAD UBEZPIECZEN SPOŁECZNYCH");
         tekst.setFont(new Font("Arial",Font.BOLD,30));
@@ -81,7 +85,7 @@ public class RegisterSucces extends JFrame implements ActionListener
 
         aktywuj.setBounds(200,400,100,40);
         aktywuj.addActionListener(this);
-
+        this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.getContentPane().setBackground(Color.WHITE);
         this.setSize(500, 500);
@@ -123,7 +127,7 @@ public class RegisterSucces extends JFrame implements ActionListener
                 Main.logr.info("uzytkownik przeszedł drugi etap rejestracji");
 
                 //odpowiedzialne za przekazanie danych na serwer ktory stworzy zapytanie i je wysle do bazy danych
-                String userData = pesel +" " +haslo+" "+email+" "+imie+" "+nazwisko;
+                String userData = pesel +" " +haslo+" "+email+" "+imie+" "+nazwisko + " " +wiek + " " + plec;
                 String commandType = "REGISTER_SUCCESS";
 
                 Client client = new Client();

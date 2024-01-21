@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2023-12-10T21:08:45.997471Z</date>
-  <millis>1702242525997</millis>
-  <nanos>471000</nanos>
+  <date>2024-01-21T21:51:37.488516100Z</date>
+  <millis>1705873897488</millis>
+  <nanos>516100</nanos>
   <sequence>0</sequence>
   <logger>java.util.logging.Logger</logger>
   <level>INFO</level>
@@ -14,9 +14,9 @@
   <message>uzytkownik uruchamia aplikacje</message>
 </record>
 <record>
-  <date>2023-12-10T21:08:49.057421800Z</date>
-  <millis>1702242529057</millis>
-  <nanos>421800</nanos>
+  <date>2024-01-21T21:51:43.166247800Z</date>
+  <millis>1705873903166</millis>
+  <nanos>247800</nanos>
   <sequence>1</sequence>
   <logger>java.util.logging.Logger</logger>
   <level>INFO</level>
@@ -26,39 +26,171 @@
   <message>uzytkownik podejmuje próbe logowania</message>
 </record>
 <record>
-  <date>2023-12-10T21:08:50.114847500Z</date>
-  <millis>1702242530114</millis>
-  <nanos>847500</nanos>
+  <date>2024-01-21T21:51:43.176246Z</date>
+  <millis>1705873903176</millis>
+  <nanos>246000</nanos>
   <sequence>2</sequence>
   <logger>java.util.logging.Logger</logger>
   <level>INFO</level>
-  <class>org.example.MainMenu</class>
-  <method>actionPerformed</method>
+  <class>org.example.Client</class>
+  <method>zapytanie</method>
   <thread>27</thread>
-  <message>uzytkownik dokonuje próby uruchomienia modułu odpowiedzialnego za opłacanie składek</message>
+  <message>zapytanie od klienta 02232007222 nowehaslo12345</message>
 </record>
 <record>
-  <date>2023-12-10T21:08:50.150828400Z</date>
-  <millis>1702242530150</millis>
-  <nanos>828400</nanos>
+  <date>2024-01-21T21:51:43.177245900Z</date>
+  <millis>1705873903177</millis>
+  <nanos>245900</nanos>
   <sequence>3</sequence>
   <logger>java.util.logging.Logger</logger>
   <level>INFO</level>
-  <class>org.example.Oplata</class>
-  <method>&lt;init&gt;</method>
+  <class>org.example.Client</class>
+  <method>zapytanie</method>
   <thread>27</thread>
-  <message>uzytkownik uruchamia modul odpowiedzialny za dokonywanie oplat</message>
+  <message>typ komendy od klienta: LOGIN</message>
 </record>
 <record>
-  <date>2023-12-10T21:10:05.091014200Z</date>
-  <millis>1702242605091</millis>
-  <nanos>14200</nanos>
+  <date>2024-01-21T21:51:43.221306500Z</date>
+  <millis>1705873903221</millis>
+  <nanos>306500</nanos>
   <sequence>4</sequence>
   <logger>java.util.logging.Logger</logger>
   <level>INFO</level>
-  <class>org.example.Oplata</class>
+  <class>org.example.Client</class>
+  <method>zapytanie</method>
+  <thread>27</thread>
+  <message>odpowiedz od serwera: success</message>
+</record>
+<record>
+  <date>2024-01-21T21:51:44.520084600Z</date>
+  <millis>1705873904520</millis>
+  <nanos>84600</nanos>
+  <sequence>5</sequence>
+  <logger>java.util.logging.Logger</logger>
+  <level>INFO</level>
+  <class>org.example.Informacje</class>
+  <method>generujRaport</method>
+  <thread>27</thread>
+  <message>uzytkownik korzysta z generatora raportów</message>
+</record>
+<record>
+  <date>2024-01-21T21:51:44.522082800Z</date>
+  <millis>1705873904522</millis>
+  <nanos>82800</nanos>
+  <sequence>6</sequence>
+  <logger>java.util.logging.Logger</logger>
+  <level>INFO</level>
+  <class>org.example.Client</class>
+  <method>zapytanie</method>
+  <thread>27</thread>
+  <message>zapytanie od klienta 02232007222</message>
+</record>
+<record>
+  <date>2024-01-21T21:51:44.522082800Z</date>
+  <millis>1705873904522</millis>
+  <nanos>82800</nanos>
+  <sequence>7</sequence>
+  <logger>java.util.logging.Logger</logger>
+  <level>INFO</level>
+  <class>org.example.Client</class>
+  <method>zapytanie</method>
+  <thread>27</thread>
+  <message>typ komendy od klienta: PROFILE_INFO</message>
+</record>
+<record>
+  <date>2024-01-21T21:51:44.553065500Z</date>
+  <millis>1705873904553</millis>
+  <nanos>65500</nanos>
+  <sequence>8</sequence>
+  <logger>java.util.logging.Logger</logger>
+  <level>INFO</level>
+  <class>org.example.Client</class>
+  <method>zapytanie</method>
+  <thread>27</thread>
+  <message>odpowiedz od serwera: wojnowskimikolaj@gmail.com Ola Nowak nowehaslo12345 22 Kobieta</message>
+</record>
+<record>
+  <date>2024-01-21T21:51:44.555064300Z</date>
+  <millis>1705873904555</millis>
+  <nanos>64300</nanos>
+  <sequence>9</sequence>
+  <logger>java.util.logging.Logger</logger>
+  <level>INFO</level>
+  <class>org.example.Client</class>
+  <method>zapytanie</method>
+  <thread>27</thread>
+  <message>zapytanie od klienta 02232007222</message>
+</record>
+<record>
+  <date>2024-01-21T21:51:44.556063700Z</date>
+  <millis>1705873904556</millis>
+  <nanos>63700</nanos>
+  <sequence>10</sequence>
+  <logger>java.util.logging.Logger</logger>
+  <level>INFO</level>
+  <class>org.example.Client</class>
+  <method>zapytanie</method>
+  <thread>27</thread>
+  <message>typ komendy od klienta: WPLATY_INFO</message>
+</record>
+<record>
+  <date>2024-01-21T21:51:44.578051500Z</date>
+  <millis>1705873904578</millis>
+  <nanos>51500</nanos>
+  <sequence>11</sequence>
+  <logger>java.util.logging.Logger</logger>
+  <level>INFO</level>
+  <class>org.example.Client</class>
+  <method>zapytanie</method>
+  <thread>27</thread>
+  <message>odpowiedz od serwera: 142866</message>
+</record>
+<record>
+  <date>2024-01-21T21:51:44.579050400Z</date>
+  <millis>1705873904579</millis>
+  <nanos>50400</nanos>
+  <sequence>12</sequence>
+  <logger>java.util.logging.Logger</logger>
+  <level>INFO</level>
+  <class>org.example.Client</class>
+  <method>zapytanie</method>
+  <thread>27</thread>
+  <message>zapytanie od klienta 02232007222</message>
+</record>
+<record>
+  <date>2024-01-21T21:51:44.579050400Z</date>
+  <millis>1705873904579</millis>
+  <nanos>50400</nanos>
+  <sequence>13</sequence>
+  <logger>java.util.logging.Logger</logger>
+  <level>INFO</level>
+  <class>org.example.Client</class>
+  <method>zapytanie</method>
+  <thread>27</thread>
+  <message>typ komendy od klienta: WPLATY_INFO_AVG</message>
+</record>
+<record>
+  <date>2024-01-21T21:51:44.651009700Z</date>
+  <millis>1705873904651</millis>
+  <nanos>9700</nanos>
+  <sequence>14</sequence>
+  <logger>java.util.logging.Logger</logger>
+  <level>INFO</level>
+  <class>org.example.Client</class>
+  <method>zapytanie</method>
+  <thread>27</thread>
+  <message>odpowiedz od serwera: 2.04094285714285714285714285714285714286E04</message>
+</record>
+<record>
+  <date>2024-01-21T21:51:45.648298900Z</date>
+  <millis>1705873905648</millis>
+  <nanos>298900</nanos>
+  <sequence>15</sequence>
+  <logger>java.util.logging.Logger</logger>
+  <level>INFO</level>
+  <class>org.example.Informacje</class>
   <method>actionPerformed</method>
   <thread>27</thread>
-  <message>uzytkownik dokonuje oplaty</message>
+  <message>uzytkownik generuje raport w postaci pdf</message>
 </record>
 </log>

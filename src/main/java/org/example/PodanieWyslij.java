@@ -46,7 +46,7 @@ public class PodanieWyslij extends JFrame implements ActionListener
         cofnijTxt.setFont(new Font(Font.DIALOG,Font.PLAIN,17));
         cofnij.setBounds(30,380,80,40);
         wyslijText.setFont(new Font(Font.DIALOG,Font.PLAIN,17));
-        wyslij.add(wyslijText);//????????? dzialaj kurwa
+        wyslij.add(wyslijText);
         cofnij.add(cofnijTxt);
         cofnij.setOpaque(false);
         pdf.setFont(new Font("Arial",Font.BOLD,17));
@@ -135,7 +135,23 @@ public class PodanieWyslij extends JFrame implements ActionListener
             if((sprawdzenie[0] == 'p') && (sprawdzenie[1]=='d')&&(sprawdzenie[2])=='f') {
                 formatPdf.setVisible(false);
                 Client client = new Client();
-                //client.zapytanie("F");
+
+                int lastIndex = plikNazwa.lastIndexOf("\\");
+                String result = plikNazwa.substring(lastIndex+1);
+
+
+                String commandType = "WYSLIJ_PODANIE";
+                String zapytanie = pesel + " "+ result;
+                client.zapytanie(commandType,zapytanie);
+
+                if(client.odpowiedzOdSerwera.equals("DodanoPodanie")){
+                    Main.logr.info("dodano podanie");
+                }
+                else
+                {
+                    Main.logr.info("nie dodano podania");
+                }
+
                 try {
                     TimeUnit.SECONDS.sleep(1);
                 } catch (InterruptedException ex) {

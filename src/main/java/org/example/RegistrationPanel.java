@@ -88,6 +88,7 @@ public class RegistrationPanel extends JFrame {
                 String password = new String(passwordField.getPassword());
                 String pesel = peselField.getText();
                 String age = ageField.getText();
+                int wiek = Integer.parseInt(age);
                 String sex = (String) sexComboBox.getSelectedItem();
                 String email = emailField.getText();
 
@@ -165,7 +166,7 @@ public class RegistrationPanel extends JFrame {
 
 
                     Main.logr.info("wyslany kod na email to: "+kodWyslany);
-                    RegisterSucces registerSucces = new RegisterSucces(pesel,password,name,surname,email, kodWyslany);
+                    RegisterSucces registerSucces = new RegisterSucces(pesel,password,name,surname,email, kodWyslany,wiek,sex);
 
                     dispose();
 

@@ -25,13 +25,14 @@ public class MainMenu extends JFrame implements ActionListener {
 
     //JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
+    ImageIcon kalkulatorIcon = new ImageIcon("pliki/kalkulator.png");
     ImageIcon icon1 = new ImageIcon("pliki/bill.png");
-    JButton skladkaZdrowotnaButton = new JButton("Opłać składkę zdrowotną", icon1);
+    JButton skladkaZdrowotnaButton = new JButton("Opłać składkę emerytalną", icon1);
 
-    JButton skladkaEmerytalnaButton = new JButton("Opłać składkę emerytalną",icon1);
+    JButton skladkaEmerytalnaButton = new JButton("Opłać składkę zdrowtoną",icon1);
 
 
-
+    JButton kalkulatorButton = new JButton("Kalkulator składki zdrowotnej",kalkulatorIcon);
     ImageIcon icon2 = new ImageIcon("pliki/upload.png");
     JButton wyslijPodanieButton = new JButton("Wyślij podanie", icon2);
 
@@ -49,7 +50,7 @@ public class MainMenu extends JFrame implements ActionListener {
 
     //ImageIcon icon7 = new ImageIcon("pliki/powrot.png");
     //JButton returnButton = new JButton("Powrót", icon7);
-
+    JButton informacjeButton= new JButton("Informacje");
     ImageIcon backgroundImage = new ImageIcon("pliki/tlo.jpg");
     JLabel backgroundLabel = new JLabel(backgroundImage);
     JLabel centerPanel = new JLabel();
@@ -66,6 +67,7 @@ public class MainMenu extends JFrame implements ActionListener {
         this.pesel = pesel;
 
         skladkaZdrowotnaButton.setSize(new Dimension(100,100));
+        kalkulatorButton.setPreferredSize(new Dimension(40,40));
         wyslijPodanieButton.setPreferredSize(new Dimension(40,40));
         pobierzPodanieButton.setPreferredSize(new Dimension(40,40));
         RaportEmerytalnyButton.setPreferredSize(new Dimension(40,40));
@@ -76,26 +78,30 @@ public class MainMenu extends JFrame implements ActionListener {
         //button1.setHorizontalAlignment(SwingConstants.CENTER);
         skladkaZdrowotnaButton.setHorizontalTextPosition(SwingConstants.LEADING);
         wyslijPodanieButton.setHorizontalTextPosition(SwingConstants.LEADING);
+        kalkulatorButton.setHorizontalTextPosition(SwingConstants.LEADING);
         pobierzPodanieButton.setHorizontalTextPosition(SwingConstants.LEADING);
         RaportEmerytalnyButton.setHorizontalTextPosition(SwingConstants.LEADING);
         skladkaEmerytalnaButton.setHorizontalTextPosition(SwingConstants.LEADING);
 
         skladkaEmerytalnaButton.setFont(buttonFont);
         wyslijPodanieButton.setFont( buttonFont);
+        kalkulatorButton.setFont(buttonFont);
         pobierzPodanieButton.setFont( buttonFont);
         RaportEmerytalnyButton.setFont( buttonFont);
         logoutButton.setFont(buttonFont);
         profileButton.setFont(buttonFont);
+        informacjeButton.setFont(buttonFont);
 
         //actions listener
         skladkaZdrowotnaButton.addActionListener(this);
         wyslijPodanieButton.addActionListener(this);
+        kalkulatorButton.addActionListener(this);
         pobierzPodanieButton.addActionListener(this);
         RaportEmerytalnyButton.addActionListener(this);
         skladkaEmerytalnaButton.addActionListener(this);
         profileButton.addActionListener(this);
         logoutButton.addActionListener(this);
-
+        informacjeButton.addActionListener(this);
 
 
 
@@ -103,6 +109,7 @@ public class MainMenu extends JFrame implements ActionListener {
         frame.add(logoutButton,BorderLayout.SOUTH);
         //frame.add(returnButton,BorderLayout.WEST);
         frame.add(profileButton,BorderLayout.EAST);
+        frame.add(informacjeButton,BorderLayout.EAST);
 
         frame.add(centerPanel,BorderLayout.CENTER);
         frame.add(westPanel,BorderLayout.WEST);
@@ -111,18 +118,20 @@ public class MainMenu extends JFrame implements ActionListener {
         centerPanel.setLayout(new GridLayout(3,2,100,60));
         centerPanel.add(skladkaZdrowotnaButton);
         centerPanel.add(wyslijPodanieButton);
+        centerPanel.add(kalkulatorButton);
         centerPanel.add(pobierzPodanieButton);
-        centerPanel.add(RaportEmerytalnyButton);
-        centerPanel.add(skladkaEmerytalnaButton);
+        //centerPanel.add(RaportEmerytalnyButton);
+        //centerPanel.add(skladkaEmerytalnaButton);
 
         westPanel.setLayout(new GridLayout(4,1,10,10));
 
         westPanel.add(profileButton);
+        westPanel.add(informacjeButton);
 
 
         frame.setTitle("ZUS");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 600);
+        frame.setSize(900, 700);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
@@ -175,6 +184,21 @@ public class MainMenu extends JFrame implements ActionListener {
             try {
                 PodanieWyslij podanie = new PodanieWyslij(pesel);
             } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+        if(e.getSource()==kalkulatorButton)
+        {
+            Main.logr.info("uzytkownik dokonuje proby uruchomienia modulu odpowiedzialnego za kalkulator skladki");
+            KalkulatorSkladki kalkulatorSkladki = new KalkulatorSkladki(pesel);
+        }
+        if (e.getSource() == informacjeButton)
+        {
+            try {
+                Informacje informacje = new Informacje(pesel);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            } catch (InterruptedException ex) {
                 throw new RuntimeException(ex);
             }
         }
